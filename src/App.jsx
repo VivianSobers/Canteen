@@ -7,7 +7,7 @@ const API_URL = "http://localhost:5000/api";
 function VideoBackground() {
   return (
     <video autoPlay loop muted playsInline className="background-video">
-      <source src="/background.mp4" type="video/mp4" />
+      <source src="./background.mp4" type="video/mp4" />
     </video>
   );
 }
@@ -275,54 +275,55 @@ function MenuPage({ title, menuItems, cart, setCart }) {
 
 function Breakfast({ cart, setCart }) {
   const menuItems = [
-    { name: "Idli Vada", price: "₹50", img: "/images/idli_vada.jpg" },
-    { name: "Idli", price: "₹40", img: "/images/idli.jpg" },
-    { name: "Vada", price: "₹35", img: "/images/vada.jpg" },
-    { name: "Dosa", price: "₹60", img: "/images/dosa.jpg" },
-    { name: "Set Dosa", price: "₹65", img: "/images/set_dosa.jpg" },
-    { name: "Upma", price: "₹45", img: "/images/upma.jpg" },
-    { name: "Chow Chow Bath", price: "₹55", img: "/images/chowchow_bath.jpg" },
-    { name: "Pongal", price: "₹50", img: "/images/pongal.jpg" },
-    { name: "Uthappam", price: "₹65", img: "/images/uthappam.jpg" },
-    { name: "Bisibele Bath", price: "₹60", img: "/images/bisibele_bath.jpg" },
-    { name: "Omelette", price: "₹40", img: "/images/omelette.jpg" },
-    { name: "Sandwich", price: "₹55", img: "/images/sandwich.jpg" },
-    { name: "Tea", price: "₹20", img: "/images/tea.jpg" },
-    { name: "Coffee", price: "₹25", img: "/images/coffee.jpg" },
-    { name: "Orange Juice", price: "₹40", img: "/images/oj.jpg" },
-  ];
+  { name: "Idli Vada", price: "₹50", img: "../images/idli_vada.jpg" },
+  { name: "Idli", price: "₹40", img: "../images/idli.jpg" },
+  { name: "Vada", price: "₹35", img: "../images/vada.jpg" },
+  { name: "Dosa", price: "₹60", img: "../images/dosa.jpg" },
+  { name: "Set Dosa", price: "₹65", img: "../images/set_dosa.jpg" },
+  { name: "Upma", price: "₹45", img: "../images/upma.jpg" },
+  { name: "Chow Chow Bath", price: "₹55", img: "../images/chowchow_bath.jpg" },
+  { name: "Pongal", price: "₹50", img: "../images/pongal.jpg" },
+  { name: "Uthappam", price: "₹65", img: "../images/uthappam.jpg" },
+  { name: "Bisibele Bath", price: "₹60", img: "../images/bisibele_bath.jpg" },
+  { name: "Omelette", price: "₹40", img: "../images/omelette.jpg" },
+  { name: "Sandwich", price: "₹55", img: "../images/sandwich.jpg" },
+  { name: "Tea", price: "₹20", img: "../images/tea.jpg" },
+  { name: "Coffee", price: "₹25", img: "../images/coffee.jpg" },
+  { name: "Orange Juice", price: "₹40", img: "../images/oj.jpg" }
+];
+
 
   return <MenuPage title="Breakfast Menu" menuItems={menuItems} cart={cart} setCart={setCart} />;
 }
 
 function Lunch({ cart, setCart }) {
-  const menuItems = [
-    { name: "Chapathi", price: "₹40", img: "/images/chapathi.jpg" },
-    { name: "Paratha", price: "₹45", img: "/images/paratha.jpg" },
-    { name: "Parotta", price: "₹50", img: "/images/parotta.jpg" },
-    { name: "Ceylon Parotta", price: "₹60", img: "/images/ceylon_parotta.jpeg" },
-    { name: "Garlic Naan", price: "₹55", img: "/images/garlic_naan.jpg" },
-    { name: "Dal Makhani", price: "₹80", img: "/images/dal_makhani.jpg" },
-    { name: "Palak Paneer", price: "₹100", img: "/images/palak_paneer.jpg" },
-    { name: "Paneer Butter Masala", price: "₹110", img: "/images/paneer_butter_masala.jpg" },
-    { name: "Kaju Masala", price: "₹120", img: "/images/kaju_masala.jpg" },
-    { name: "Green Peas Curry", price: "₹90", img: "/images/green_peas_curry.jpg" },
-    { name: "Fried Rice", price: "₹80", img: "/images/fried_rice.jpg" },
-    { name: "Jeera Rice", price: "₹70", img: "/images/jeera_rice.jpg" },
-    { name: "Pulav", price: "₹75", img: "/images/pulav.jpg" },
-    { name: "Ghee Rice", price: "₹70", img: "/images/ghee_rice.jpg" },
-    { name: "Curd Rice", price: "₹60", img: "/images/curd_rice.jpg" },
-    { name: "Lemon Rice", price: "₹60", img: "/images/lemon_rice.jpg" },
-    { name: "Schezwan Noodles", price: "₹90", img: "/images/schezwan_noodles.jpg" },
-    { name: "Paneer Manchurian", price: "₹100", img: "/images/paneer_manchurian.jpg" },
-    { name: "Babycorn Manchurian", price: "₹100", img: "/images/babycorn.jpg" },
-    { name: "Gobi Manchurian", price: "₹85", img: "/images/gobi_manchurian.jpg" },
-    { name: "North Indian Meals", price: "₹130", img: "/images/north_indian_meals.jpg" },
-    { name: "South Indian Meals", price: "₹120", img: "/images/south_indian_meals.jpg" },
-    { name: "Pappad", price: "₹20", img: "/images/pappad.jpg" },
-    { name: "Salad", price: "₹25", img: "/images/salad.jpg" },
-    { name: "Water Bottle", price: "₹15", img: "/images/water.png" },
-  ];
+const menuItems = [
+  { name: "Chapathi", price: "₹40", img: "../images/chapathi.jpg" },
+  { name: "Paratha", price: "₹45", img: "../images/paratha.jpg" },
+  { name: "Parotta", price: "₹50", img: "../images/parotta.jpg" },
+  { name: "Ceylon Parotta", price: "₹60", img: "../images/ceylon_parotta.jpeg" },
+  { name: "Garlic Naan", price: "₹55", img: "../images/garlic_naan.jpg" },
+  { name: "Dal Makhani", price: "₹80", img: "../images/dal_makhani.jpg" },
+  { name: "Palak Paneer", price: "₹100", img: "../images/palak_paneer.jpg" },
+  { name: "Paneer Butter Masala", price: "₹110", img: "../images/paneer_butter_masala.jpg" },
+  { name: "Kaju Masala", price: "₹120", img: "../images/kaju_masala.jpg" },
+  { name: "Green Peas Curry", price: "₹90", img: "../images/green_peas_curry.jpg" },
+  { name: "Fried Rice", price: "₹80", img: "../images/fried_rice.jpg" },
+  { name: "Jeera Rice", price: "₹70", img: "../images/jeera_rice.jpg" },
+  { name: "Pulav", price: "₹75", img: "../images/pulav.jpg" },
+  { name: "Ghee Rice", price: "₹70", img: "../images/ghee_rice.jpg" },
+  { name: "Curd Rice", price: "₹60", img: "../images/curd_rice.jpg" },
+  { name: "Lemon Rice", price: "₹60", img: "../images/lemon_rice.jpg" },
+  { name: "Schezwan Noodles", price: "₹90", img: "../images/schezwan_noodles.jpg" },
+  { name: "Paneer Manchurian", price: "₹100", img: "../images/paneer_manchurian.jpg" },
+  { name: "Babycorn Manchurian", price: "₹100", img: "../images/babycorn.jpg" },
+  { name: "Gobi Manchurian", price: "₹85", img: "../images/gobi_manchurian.jpg" },
+  { name: "North Indian Meals", price: "₹130", img: "../images/north_indian_meals.jpg" },
+  { name: "South Indian Meals", price: "₹120", img: "../images/south_indian_meals.jpg" },
+  { name: "Pappad", price: "₹20", img: "../images/pappad.jpg" },
+  { name: "Salad", price: "₹25", img: "../images/salad.jpg" },
+  { name: "Water Bottle", price: "₹15", img: "../images/water.png" }
+];
 
   return <MenuPage title="Lunch Menu" menuItems={menuItems} cart={cart} setCart={setCart} />;
 }
@@ -379,24 +380,25 @@ function Checkout({ cart, setCart, userData }) {
   };
 
   const imageMap = {
-    "Idli Vada": "/images/idli_vada.jpg", "Idli": "/images/idli.jpg", "Vada": "/images/vada.jpg",
-    "Dosa": "/images/dosa.jpg", "Set Dosa": "/images/set_dosa.jpg", "Upma": "/images/upma.jpg",
-    "Chow Chow Bath": "/images/chowchow_bath.jpg", "Pongal": "/images/pongal.jpg",
-    "Uthappam": "/images/uthappam.jpg", "Bisibele Bath": "/images/bisibele_bath.jpg",
-    "Omelette": "/images/omelette.jpg", "Sandwich": "/images/sandwich.jpg",
-    "Tea": "/images/tea.jpg", "Coffee": "/images/coffee.jpg", "Orange Juice": "/images/oj.jpg",
-    "Chapathi": "/images/chapathi.jpg", "Paratha": "/images/paratha.jpg",
-    "Parotta": "/images/parotta.jpg", "Ceylon Parotta": "/images/ceylon_parotta.jpeg",
-    "Garlic Naan": "/images/garlic_naan.jpg", "Dal Makhani": "/images/dal_makhani.jpg",
-    "Palak Paneer": "/images/palak_paneer.jpg", "Paneer Butter Masala": "/images/paneer_butter_masala.jpg",
-    "Kaju Masala": "/images/kaju_masala.jpg", "Green Peas Curry": "/images/green_peas_curry.jpg",
-    "Fried Rice": "/images/fried_rice.jpg", "Jeera Rice": "/images/jeera_rice.jpg",
-    "Pulav": "/images/pulav.jpg", "Ghee Rice": "/images/ghee_rice.jpg",
-    "Curd Rice": "/images/curd_rice.jpg", "Lemon Rice": "/images/lemon_rice.jpg",
-    "Schezwan Noodles": "/images/schezwan_noodles.jpg", "Paneer Manchurian": "/images/paneer_manchurian.jpg",
-    "Babycorn Manchurian": "/images/babycorn.jpg", "Gobi Manchurian": "/images/gobi_manchurian.jpg",
-    "North Indian Meals": "/images/north_indian_meals.jpg", "South Indian Meals": "/images/south_indian_meals.jpg",
-    "Pappad": "/images/pappad.jpg", "Salad": "/images/salad.jpg", "Water Bottle": "/images/water.png",
+    "Idli Vada": "../images/idli_vada.jpg", "Idli": "./images/idli.jpg", "Vada": "./images/vada.jpg",
+    "Dosa": "./images/dosa.jpg", "Set Dosa": "./images/set_dosa.jpg", "Upma": "./images/upma.jpg",
+    "Chow Chow Bath": "./images/chowchow_bath.jpg", "Pongal": "./images/pongal.jpg",
+    "Uthappam": "./images/uthappam.jpg", "Bisibele Bath": "./images/bisibele_bath.jpg",
+    "Omelette": "./images/omelette.jpg", "Sandwich": "./images/sandwich.jpg",
+    "Tea": "./images/tea.jpg", "Coffee": "./images/coffee.jpg", "Orange Juice": "./images/oj.jpg",
+    "Chapathi": "./images/chapathi.jpg", "Paratha": "./images/paratha.jpg",
+    "Parotta": "./images/parotta.jpg", "Ceylon Parotta": "./images/ceylon_parotta.jpeg",
+    "Garlic Naan": "./images/garlic_naan.jpg", "Dal Makhani": "./images/dal_makhani.jpg",
+    "Palak Paneer": "./images/palak_paneer.jpg", "Paneer Butter Masala": "./images/paneer_butter_masala.jpg",
+    "Kaju Masala": "./images/kaju_masala.jpg", "Green Peas Curry": "./images/green_peas_curry.jpg",
+    
+    "Fried Rice": "./images/fried_rice.jpg", "Jeera Rice": "./images/jeera_rice.jpg",
+    "Pulav": "./images/pulav.jpg", "Ghee Rice": "./images/ghee_rice.jpg",
+    "Curd Rice": "./images/curd_rice.jpg", "Lemon Rice": "./images/lemon_rice.jpg",
+    "Schezwan Noodles": "./images/schezwan_noodles.jpg", "Paneer Manchurian": "./images/paneer_manchurian.jpg",
+    "Babycorn Manchurian": "./images/babycorn.jpg", "Gobi Manchurian": "./images/gobi_manchurian.jpg",
+    "North Indian Meals": "./images/north_indian_meals.jpg", "South Indian Meals": "./images/south_indian_meals.jpg",
+    "Pappad": "./images/pappad.jpg", "Salad": "./images/salad.jpg", "Water Bottle": "./images/water.png",
   };
 
   const items = Object.entries(cart);
