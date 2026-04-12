@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route, Link, useNavigate, useLocation, useParams } from "react-router-dom";
 import "./App.css";
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = "/api";
 
 function VideoBackground() {
   return (
