@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: canteen-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: canteen-backend
+  template:
+    metadata:
+      labels:
+        app: canteen-backend
+    spec:
+      containers:
+      - name: backend
+        image: canteen-backend:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5001
+        env:
+        - name: PORT
+          value: "5001"
+        - name: MONGO_URL
+          value: "mongodb+srv://viviansobers:jmSksjnilRUPW65R@cluster0.2ssmumc.mongodb.net/canteen"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  selector:
+    app: canteen-backend
+  ports:
+  - port: 5001
+    targetPort: 5001
