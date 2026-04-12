@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Link, useNavigate, useLocation, useParams } from "react-router-dom";
 import "./App.css";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements, CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 const API_URL = "/api";
 
@@ -364,6 +368,12 @@ function Checkout({ cart, setCart, userData }) {
   const navigate = useNavigate();
   const [showConfetti, setShowConfetti] = useState(false);
   const [orderPlaced, setOrderPlaced] = useState(false);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [cardNumber, setCardNumber] = useState("");
+  const [cardExpiry, setCardExpiry] = useState("");
+  const [cardCvc, setCardCvc] = useState("");
+  const [cardName, setCardName] = useState("");
+  const [processing, setProcessing] = useState(false);
 
   const priceMap = {
     "Idli Vada": 50, "Idli": 40, "Vada": 35, "Dosa": 60, "Set Dosa": 65,
@@ -407,94 +417,44 @@ function Checkout({ cart, setCart, userData }) {
   const deliveryFee = 0;
   const total = subtotal + gst + deliveryFee;
 
-  const loadRazorpayScript = () => {
-    return new Promise((resolve) => {
-      const script = document.createElement('script');
-      script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-      script.onload = () => resolve(true);
-      script.onerror = () => resolve(false);
-      document.body.appendChild(script);
-    });
-  };
-
   const saveOrderToDatabase = async (orderNumber, otp) => {
     try {
-      const orderItems = items.map(([name, qty]) => ({
-        name,
-        quantity: qty,
-        price: priceMap[name]
-      }));
-
+      const orderItems = items.map(([name, qty]) => ({ name, quantity: qty, price: priceMap[name] }));
       const response = await fetch(`${API_URL}/orders`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userName: userData.name,
-          srn: userData.srn,
-          orderNumber,
-          otp,
-          items: orderItems,
-          totalAmount: total
-        })
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userName: userData.name, srn: userData.srn, orderNumber, otp, items: orderItems, totalAmount: total })
       });
-
       const data = await response.json();
       return data.success;
-    } catch (error) {
-      console.error('Error saving order:', error);
-      return false;
-    }
+    } catch (error) { console.error("Error saving order:", error); return false; }
   };
 
   const handlePayment = async () => {
-    const res = await loadRazorpayScript();
-
-    if (!res) {
-      alert('Razorpay SDK failed to load. Please check your internet connection.');
-      return;
-    }
-
-    const options = {
-      key: 'rzp_test_1DP5mmOlF5G5ag', 
-      amount: total * 100,
-      currency: 'INR',
-      name: 'PES FOOD COURTS',
-      description: 'Order Payment',
-      image: '/logo.png',
-      handler: async function (response) {
-        console.log('Payment Successful:', response);
-        setShowConfetti(true);
-        setOrderPlaced(true);
-        
-        const orderNumber = 'ORD' + Math.floor(100000 + Math.random() * 900000);
-        const otp = Math.floor(1000 + Math.random() * 9000).toString();
-        
-        await saveOrderToDatabase(orderNumber, otp);
-        
-        setTimeout(() => {
-          setShowConfetti(false);
-          navigate(`/order-status/${orderNumber}/${otp}`);
-          setCart({});
-        }, 3000);
-      },
-      prefill: {
-        name: userData.name,
-        email: `${userData.srn}@pes.edu`,
-        contact: '9999999999'
-      },
-      theme: {
-        color: '#ff6b00'
-      },
-      modal: {
-        ondismiss: function() {
-          console.log('Payment cancelled by user');
-        }
-      }
-    };
-
-    const paymentObject = new window.Razorpay(options);
-    paymentObject.open();
+    setProcessing(true);
+    try {
+      const response = await fetch(`${API_URL}/create-payment-intent`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount: total }),
+      });
+      const { clientSecret } = await response.json();
+      const stripe = await stripePromise;
+      
+      const result = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: "pm_card_visa"
+      });
+      if (result.error) { alert(result.error.message); setProcessing(false); return; }
+      setShowPaymentModal(false);
+      setShowConfetti(true);
+      setOrderPlaced(true);
+      const orderNumber = "ORD" + Math.floor(100000 + Math.random() * 900000);
+      const otp = Math.floor(1000 + Math.random() * 9000).toString();
+      await saveOrderToDatabase(orderNumber, otp);
+      setTimeout(() => { setShowConfetti(false); navigate(`/order-status/${orderNumber}/${otp}`); setCart({}); }, 3000);
+    } catch (error) { alert("Payment failed: " + error.message); }
   };
+
 
   return (
     <div className="menu-page">
@@ -558,12 +518,40 @@ function Checkout({ cart, setCart, userData }) {
                   <span>₹{total}</span>
                 </div>
               </div>
-              <button className="place-order-btn" onClick={handlePayment}>
+              <button className="place-order-btn" onClick={() => setShowPaymentModal(true)}>
                 💳 Proceed to Payment
               </button>
             </div>
           </div>
         )}
+
+      {showPaymentModal && (
+        <div style={{position:"fixed",top:0,left:0,width:"100%",height:"100%",background:"rgba(0,0,0,0.7)",display:"flex",alignItems:"center",justifyContent:"center",zIndex:1000}}>
+          <div style={{background:"white",borderRadius:"16px",padding:"2rem",width:"90%",maxWidth:"420px"}}>
+            <h2 style={{marginBottom:"1rem",color:"#333"}}>💳 Pay ₹{total}</h2>
+            <div style={{marginBottom:"1rem"}}>
+              <label style={{display:"block",marginBottom:"4px",color:"#666",fontSize:"14px"}}>Cardholder Name</label>
+              <input value={cardName} onChange={e=>setCardName(e.target.value)} placeholder="John Doe" style={{width:"100%",padding:"10px",border:"1px solid #ddd",borderRadius:"8px",fontSize:"16px"}}/>
+            </div>
+            <div style={{marginBottom:"1rem"}}>
+              <label style={{display:"block",marginBottom:"4px",color:"#666",fontSize:"14px"}}>Card Number</label>
+              <input value={cardNumber} onChange={e=>setCardNumber(e.target.value)} placeholder="4242 4242 4242 4242" maxLength="19" style={{width:"100%",padding:"10px",border:"1px solid #ddd",borderRadius:"8px",fontSize:"16px"}}/>
+            </div>
+            <div style={{display:"flex",gap:"1rem",marginBottom:"1.5rem"}}>
+              <div style={{flex:1}}>
+                <label style={{display:"block",marginBottom:"4px",color:"#666",fontSize:"14px"}}>Expiry</label>
+                <input value={cardExpiry} onChange={e=>setCardExpiry(e.target.value)} placeholder="MM/YY" maxLength="5" style={{width:"100%",padding:"10px",border:"1px solid #ddd",borderRadius:"8px",fontSize:"16px"}}/>
+              </div>
+              <div style={{flex:1}}>
+                <label style={{display:"block",marginBottom:"4px",color:"#666",fontSize:"14px"}}>CVC</label>
+                <input value={cardCvc} onChange={e=>setCardCvc(e.target.value)} placeholder="123" maxLength="3" style={{width:"100%",padding:"10px",border:"1px solid #ddd",borderRadius:"8px",fontSize:"16px"}}/>
+              </div>
+            </div>
+            <button onClick={handlePayment} disabled={processing} style={{width:"100%",padding:"14px",background:"#ff6b00",color:"white",border:"none",borderRadius:"8px",fontSize:"16px",fontWeight:"bold",cursor:"pointer"}}>{processing ? "Processing..." : `Pay ₹${total}`}</button>
+            <button onClick={()=>setShowPaymentModal(false)} style={{width:"100%",padding:"10px",background:"transparent",color:"#999",border:"none",fontSize:"14px",marginTop:"8px",cursor:"pointer"}}>Cancel</button>
+          </div>
+        </div>
+      )}
       </main>
     </div>
   );
