@@ -1,16 +1,24 @@
-# React + Vite
+# 🍽️ Canteen — Smart Campus Food System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> A full-stack canteen management app for PES University, containerized with Docker and orchestrated with Kubernetes.
 
-Currently, two official plugins are available:
+## 🚀 Tech Stack
+- React + Vite (Frontend)
+- Node.js + Express (Backend)
+- MongoDB Atlas (Database)
+- Stripe (Payments)
+- Docker + Kubernetes (Deployment)
+- GitHub Actions (CI/CD)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🐳 Run Locally
+```bash
+docker-compose up --build
+```
 
-## React Compiler
+## ☸️ Deploy to Kubernetes
+```bash
+kubectl apply -f k8s/
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 💳 Test Payment
+Use Stripe test card: `4242 4242 4242 4242` | Expiry: `12/28` | CVC: `123`
