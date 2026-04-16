@@ -10,6 +10,7 @@
 ![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
 ![Deployment](https://img.shields.io/badge/Deployment-GitHub%20Pages-222222?style=for-the-badge&logo=githubpages&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Production%20Ready-success?style=for-the-badge)
+[![License](https://img.shields.io/badge/License-Apache_2.0-critical.svg?style=for-the-badge)](https://opensource.org/licenses/Apache-2.0)
 
 A full-stack food ordering app built for PES University. Students can browse
 the canteen menu, add items to cart, and complete payments through a secure
