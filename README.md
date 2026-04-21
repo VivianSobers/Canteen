@@ -1,151 +1,183 @@
-# Canteen
 
-![Frontend](https://img.shields.io/badge/Frontend-React%2019-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-![Backend](https://img.shields.io/badge/Backend-Node.js%20%7C%20Express-339933?style=for-the-badge&logo=node.js&logoColor=white)
-![Database](https://img.shields.io/badge/Database-MongoDB%20Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
-![Payments](https://img.shields.io/badge/Payments-Stripe-635BFF?style=for-the-badge&logo=stripe&logoColor=white)
-![Containerized](https://img.shields.io/badge/Containerized-Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![Orchestration](https://img.shields.io/badge/Orchestration-Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)
-![Web Server](https://img.shields.io/badge/Server-nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
-![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
-![Deployment](https://img.shields.io/badge/Deployment-GitHub%20Pages-222222?style=for-the-badge&logo=githubpages&logoColor=white)
-![Status](https://img.shields.io/badge/Status-Production%20Ready-success?style=for-the-badge)
-[![License](https://img.shields.io/badge/License-Apache_2.0-critical.svg?style=for-the-badge)](https://opensource.org/licenses/Apache-2.0)
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=venom&height=320&text=CANTEEN&fontSize=100&color=0:0d0d1a,30:1a1040,60:0f0730,100:160d3d&fontColor=c4b5fd&animation=fadeIn&stroke=7c3aed&strokeWidth=2&fontAlignY=50" />
+</p>
 
-A full-stack food ordering app built for PES University. Students can browse
-the canteen menu, add items to cart, and complete payments through a secure
-checkout flow.
+<p align="center">
+  <img src="svg/badge-version.svg" />
+  &nbsp;
+  <img src="svg/badge-license.svg" />
+  &nbsp;
+  <img src="svg/badge-build.svg" />
+  &nbsp;
+  <img src="svg/badge-docker.svg" />
+</p>
+
+<br/>
+
+> **Canteen** is a full-stack food ordering web application.  
+> Students browse the menu, add to cart, and check out via a secure Stripe-powered flow.  
+> Two containerised services — a React frontend served via nginx, and a Node/Express REST API backed by MongoDB Atlas — orchestrated with Kubernetes and deployed automatically via GitHub Actions.
+
+<br/>
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=soft&height=2&color=0:7c3aed,50:818cf8,100:6d28d9" />
+</p>
 
 ---
 
-## Tech Stack
+## ◈ Stack
+
+<p align="center">
+  <img src="svg/react.svg" width="48" title="React 19" />
+  &nbsp;&nbsp;
+  <img src="svg/nodejs.svg" width="48" title="Node.js" />
+  &nbsp;&nbsp;
+  <img src="svg/javascript.svg" width="48" title="JavaScript" />
+  &nbsp;&nbsp;
+  <img src="svg/mongodb.svg" width="48" title="MongoDB Atlas" />
+  &nbsp;&nbsp;
+  <img src="svg/stripe.svg" width="48" title="Stripe" />
+  &nbsp;&nbsp;
+  <img src="svg/docker.svg" width="48" title="Docker" />
+  &nbsp;&nbsp;
+  <img src="svg/kubernetes.svg" width="48" title="Kubernetes" />
+  &nbsp;&nbsp;
+  <img src="svg/vite.svg" width="48" title="Vite 7" />
+  &nbsp;&nbsp;
+  <img src="svg/express.svg" width="48" title="Express" />
+  &nbsp;&nbsp;
+  <img src="svg/nginx.svg" width="48" title="nginx" />
+  &nbsp;&nbsp;
+  <img src="svg/github-actions.svg" width="48" title="GitHub Actions" />
+</p>
+
+<br/>
 
 | Layer | Technology |
-|---|---|
-| Frontend | React 19, React Router DOM 7, Vite 7 |
-| Backend | Node.js, Express |
-| Database | MongoDB Atlas |
-| Payments | Stripe |
-| Containerization | Docker, Docker Compose |
-| Orchestration | Kubernetes |
-| Web Server | nginx |
-| CI/CD | GitHub Actions |
+|:--|:--|
+| 🎨 &nbsp;Frontend | React 19 · React Router DOM 7 · Vite 7 |
+| ⚙️ &nbsp;Backend | Node.js · Express REST API |
+| 🗄️ &nbsp;Database | MongoDB Atlas |
+| 💳 &nbsp;Payments | Stripe |
+| 🐳 &nbsp;Containers | Docker · Docker Compose |
+| ☸️ &nbsp;Orchestration | Kubernetes (×2 replicas each service) |
+| 🌐 &nbsp;Web Server | nginx (reverse proxy + static serve) |
+| 🔄 &nbsp;CI/CD | GitHub Actions → GitHub Pages |
 
 ---
 
-## Architecture
+## ◈ Tech Breakdown
 
-The app runs as two independent services. The React frontend is built with
-Vite and served via nginx. The Node/Express backend exposes a REST API
-connected to MongoDB Atlas for storing orders and user data. Both services
-are containerized with Docker and can be orchestrated locally using
-Kubernetes. GitHub Actions automates builds and deployment on every push
-to main.
+<p align="center">
+  <img src="svg/chart-stack.svg" />
+</p>
 
 ---
 
-## Getting Started
+## ◈ Architecture
 
-Prerequisites: Node.js v18+, Docker Desktop
+<p align="center">
+  <img src="svg/diagram-architecture.svg" />
+</p>
 
-**Run with Docker Compose**
+---
+
+## ◈ CI/CD Pipeline
+
+<p align="center">
+  <img src="svg/diagram-cicd.svg" />
+</p>
+
+---
+
+## ◈ Run It
+
+### ⚡ Docker Compose *(one command)*
 
 ```bash
 docker-compose up --build
 ```
 
-App runs at http://localhost.
+Serves the full stack at **http://localhost**
 
-**Run without Docker**
+### 🔧 Without Docker
 
 ```bash
 # Terminal 1 — Frontend
-npm install
-npm run dev
+npm install && npm run dev            # → http://localhost:5173
 
 # Terminal 2 — Backend
-cd backend
-npm install
-node server.js
+cd backend && npm install && node server.js    # → http://localhost:5001
 ```
-
-Frontend runs at http://localhost:5173 and the API at http://localhost:5001.
 
 ---
 
-## Kubernetes
+## ◈ Kubernetes
 
 ```bash
-# Deploy
-kubectl apply -f k8s/
-
-# Verify pods are running
-kubectl get pods
+kubectl apply -f k8s/      # deploy 2 replicas of each service
+kubectl get pods            # verify they're running
 ```
-
-Deploys 2 replicas each of the frontend and backend.
 
 ---
 
-## Environment Variables
+## ◈ Environment Variables
 
-Create `backend/.env`:
-
-```
+**`backend/.env`**
+```env
 PORT=5001
 MONGO_URL=your_mongodb_connection_string
 STRIPE_SECRET_KEY=your_stripe_secret_key
 ```
 
-Create `.env` at the project root:
-
-```
+**`.env`** *(project root)*
+```env
 VITE_STRIPE_PUBLIC_KEY=your_stripe_publishable_key
 ```
 
-Neither file should be committed. Both are covered in `.gitignore`.
+> Neither file is committed — both listed in `.gitignore`
 
 ---
 
-## Test Payment
-
-Use the following Stripe test card at checkout:
+## ◈ Test Payment
 
 ```
-Card number  4242 4242 4242 4242
-Expiry       12/28
-CVC          123
+Card    4242 4242 4242 4242
+Expiry  12/28
+CVC     123
 ```
 
 ---
 
-## Project Structure
+## ◈ Project Structure
 
 ```
 Canteen/
-├── .github/workflows/      CI/CD pipeline
-├── backend/                Node.js + Express REST API
-│   └── server.js
-├── k8s/                    Kubernetes manifests
+├── .github/workflows/           ← CI/CD pipeline
+├── backend/
+│   └── server.js                ← Express REST API
+├── k8s/
 │   ├── backend-deployment.yaml
 │   └── frontend-deployment.yaml
-├── src/                    React frontend
+├── svg/                         ← icons, badges, charts
+├── src/
 │   ├── App.jsx
 │   └── main.jsx
-├── Dockerfile              Frontend container
-├── docker-compose.yml      Local multi-service orchestration
-└── nginx.conf              Reverse proxy configuration
+├── Dockerfile                   ← Frontend container
+├── docker-compose.yml
+└── nginx.conf
 ```
 
 ---
 
-## CI/CD
+## ◈ License
 
-GitHub Actions triggers on every push to main. It builds and validates both
-services, then deploys the frontend to GitHub Pages automatically.
+Apache 2.0 — see [`LICENSE`](./LICENSE)
 
----
+<br/>
 
-## License
-
-MIT
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=140&color=0:0d0d1a,40:1a1040,100:0f0730&section=footer&fontSize=20&fontColor=7c3aed&animation=fadeIn" />
+</p>
