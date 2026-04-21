@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 100" width="560" height="100">
+  <defs>
+    <linearGradient id="pipeBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d0d1a"/>
+      <stop offset="100%" style="stop-color:#1a1040"/>
+    </linearGradient>
+    <marker id="arr2" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#7c3aed"/>
+    </marker>
+  </defs>
+  <rect width="560" height="100" rx="12" fill="url(#pipeBg)"/>
+  <rect x="1" y="1" width="558" height="98" rx="11" fill="none" stroke="#7c3aed" stroke-width="1" opacity="0.4"/>
+
+  <!-- Steps -->
+  <!-- Push -->
+  <rect x="12" y="28" width="80" height="44" rx="7" fill="#1e1b4b" stroke="#818cf8" stroke-width="1.5"/>
+  <text x="52" y="47" font-family="Arial" font-weight="bold" font-size="9" fill="#818cf8" text-anchor="middle">git push</text>
+  <text x="52" y="61" font-family="Arial" font-size="8" fill="#6b7280" text-anchor="middle">main branch</text>
+
+  <line x1="92" y1="50" x2="108" y2="50" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+  <!-- Build -->
+  <rect x="110" y="28" width="80" height="44" rx="7" fill="#1e1b4b" stroke="#2088FF" stroke-width="1.5"/>
+  <text x="150" y="47" font-family="Arial" font-weight="bold" font-size="9" fill="#60a5fa" text-anchor="middle">Build</text>
+  <text x="150" y="61" font-family="Arial" font-size="8" fill="#6b7280" text-anchor="middle">Docker images</text>
+
+  <line x1="190" y1="50" x2="206" y2="50" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+  <!-- Test -->
+  <rect x="208" y="28" width="80" height="44" rx="7" fill="#1e1b4b" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="248" y="47" font-family="Arial" font-weight="bold" font-size="9" fill="#fbbf24" text-anchor="middle">Validate</text>
+  <text x="248" y="61" font-family="Arial" font-size="8" fill="#6b7280" text-anchor="middle">lint · checks</text>
+
+  <line x1="288" y1="50" x2="304" y2="50" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+  <!-- k8s deploy -->
+  <rect x="306" y="28" width="80" height="44" rx="7" fill="#1e1b4b" stroke="#326CE5" stroke-width="1.5"/>
+  <text x="346" y="47" font-family="Arial" font-weight="bold" font-size="9" fill="#818cf8" text-anchor="middle">k8s Deploy</text>
+  <text x="346" y="61" font-family="Arial" font-size="8" fill="#6b7280" text-anchor="middle">×2 replicas</text>
+
+  <line x1="386" y1="50" x2="402" y2="50" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+  <!-- Pages -->
+  <rect x="404" y="28" width="80" height="44" rx="7" fill="#1e1b4b" stroke="#4DB33D" stroke-width="1.5"/>
+  <text x="444" y="47" font-family="Arial" font-weight="bold" font-size="9" fill="#4ade80" text-anchor="middle">GH Pages</text>
+  <text x="444" y="61" font-family="Arial" font-size="8" fill="#6b7280" text-anchor="middle">auto deploy</text>
+
+  <line x1="484" y1="50" x2="500" y2="50" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+  <!-- Live -->
+  <rect x="502" y="28" width="46" height="44" rx="7" fill="#14532d" stroke="#4ade80" stroke-width="1.5"/>
+  <text x="525" y="47" font-family="Arial" font-weight="bold" font-size="9" fill="#4ade80" text-anchor="middle">Live</text>
+  <text x="525" y="61" font-family="Arial" font-size="8" fill="#86efac" text-anchor="middle">✓</text>
+
+  <text x="280" y="94" font-family="Arial" font-size="8" fill="#6b7280" text-anchor="middle">CI/CD Pipeline · GitHub Actions</text>
+</svg>

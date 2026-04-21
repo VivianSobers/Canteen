@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="nginxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#009639"/>
+      <stop offset="100%" style="stop-color:#00C846"/>
+    </linearGradient>
+  </defs>
+  <polygon points="32,4 60,52 4,52" fill="url(#nginxGrad)"/>
+  <text x="32" y="46" font-family="Arial" font-weight="bold" font-size="10" fill="white" text-anchor="middle">nginx</text>
+  <polygon points="32,16 48,44 16,44" fill="white" opacity="0.15"/>
+</svg>

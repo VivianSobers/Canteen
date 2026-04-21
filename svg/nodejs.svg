@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <path d="M32 4L6 18.5v27L32 60l26-14.5v-27L32 4z" fill="#3C873A"/>
+  <path d="M32 4L6 18.5v27L32 60V4z" fill="#3C873A"/>
+  <path d="M32 4L6 18.5v27L32 60l26-14.5v-27L32 4z" fill="none" stroke="#3C873A" stroke-width="0.5"/>
+  <text x="32" y="38" font-family="Arial" font-weight="bold" font-size="14" fill="white" text-anchor="middle">NODE</text>
+</svg>
